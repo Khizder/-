@@ -1,0 +1,48 @@
+quals=[]
+elem=[]
+Set=[]
+while True:
+    try:
+        numgamers=int(input('Введите количество игроков '))
+        break
+    except ValueError:
+        print('Введено не натуральное число')
+while len(quals)!=numgamers:
+    x=input('Введите имя: ')
+    quals.append(x)
+while len(elem)!=numgamers:
+    try:
+        y=str(input('Введите камень, ножницы или бумага: ')).lower()
+    except ValueError:
+        print('Неправильное значение')
+    if y!='камень' and y!='бумага' and y!='ножницы':
+        print('Не понятно что вы вырали')
+    else:
+        elem.append(y)
+while len(set(elem))!=2:
+    if len(set(elem))>2:
+        print('Ничья')
+    elif len(set(elem))<2:
+        print('Ничья')
+    break
+print(set(elem))
+Set=list(set(elem))
+if len(set(elem))==2:
+    for i in Set:
+        if Set[0]=='камень' and Set[1]=='ножницы' or Set[0]=='камень' and Set[1]=='ножницы':
+            for i in range(numgamers):
+                if elem[i]=='камень':
+                    print(quals[i], 'победил')
+            break
+        if Set[0]=='камень' and Set[1]=='бумага' or Set[1]=='камень' and Set[0]=='бумага':
+            for i in range(numgamers):
+                if elem[i]=='бумага':
+                    print(quals[i], 'победил')
+            break
+        if Set[1]=='бумага' and Set[0]=='ножницы' or Set[0]=='бумага' and Set[1]=='ножницы':
+            for i in range(numgamers):
+                if elem[i]=='ножницы':
+                    print(quals[i], 'победил')
+            break
+else:
+    print('Переигрываем')
