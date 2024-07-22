@@ -1,0 +1,42 @@
+num=[]
+name=[]
+values=[]
+marks=[]
+end=[]
+try:
+    with open('input.txt','r') as n:
+        lines = n.readlines()
+        for i in lines:
+            num.append(i.strip('\n'))
+        for j in num:
+            for k in j:
+                while k!=',':
+                    j=j.strip(k)
+                    break
+                else:
+                    break
+            values.append(int(j[1:].rstrip(' ')))
+        for j in lines:
+            line=j.split(',')
+            name.append(line[0])
+except FileNotFoundError:
+    print('Файл input.txt не находится в одной папке с данным кодом')
+midval=0
+for i in values:
+    midval+=i
+try:
+    midval=midval/int(len(values))
+except ZeroDivisionError:
+    print('Невозможно посчитать среднее значение из-за отсутствия данных')
+for i in values:
+    if i>midval:
+        marks.append(i)
+for i in num:
+    for j in marks:
+        k=i.split(',')
+        if j==int(k[1].rstrip(' ')):
+            end.append(i)
+with open('output.txt','w') as o:
+    for i in end:
+        print(i)
+        o.write(i+'\n')
